@@ -108,10 +108,13 @@ class shifty:
 			threshold = self.cruise_velocity * 15
 			
 			if(avg < threshold and self.iterationsToRotateFor == 0):
+				self.linear_velocity = 0
+				self.angular_velocity = 0
+				self.setVelocity()
 				self.iterationsToRotateFor = 30
 				var = random.randint(0,1)*2 -1
 				self.angular_velocity = var			
-
+				
 		rospy.Subscriber("/range", Range, ir_callback)
 		#rospy.loginfo("subscribing")
 
